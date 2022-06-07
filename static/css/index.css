@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@600&family=Josefin+Sans:wght@700&family=Tajawal&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: rgb(187, 173, 173);
+}
+
+.mobile-enabled {
+    display: none;
+}
+
+.banner {
+    position: relative;
+    text-align: center;
+}
+
+.my-flex {
+    flex-direction: row !important;
+}
+
+.banner h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 800;
+    font-size: 55px;
+    display: inline;
+    transform: translate(-50%, -50%);
+}
+
+.banner p {
+    position: absolute;
+    padding-top: 2px;
+    top: 60%;
+    left: 50%;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 25px;
+    line-height: normal;
+    transform: translate(-50%, -50%);
+}
+@media (max-width: 990px) {
+    .mobile-disabled {
+        display: none;
+    }
+
+    .mobile-enabled {
+        display: block;
+    }
+
+    .banner h1 {
+        font-size: 40px;
+    }
+
+    .banner p {
+        font-size: 18px;
+        width: 85%;
+        top: 70%;
+    }
+
+    .contact {
+        max-width: 80%;
+    }
+
+    .my-flex {
+        flex-direction: column !important;
+    }
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.my-font {
+    font-family: 'Cabin', 'sans-serif';
+}
+
+.blog-date {
+    font-size: 12px;
+    margin-top: -2%;
+    margin-bottom: 1%;
+}
+
+.blog-cato {
+    margin-top: -2%;
+    text-transform: uppercase;
+}
+
+.myblog-font {
+    font-family: 'Tajawal', sans-serif;
+}
+.blog-post {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1rem;
+}
+.f-12{
+    font-size: 13px;
+}
+@media (min-width: 600px) {
+    .blog-post {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    .blog-post {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

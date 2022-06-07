@@ -1,0 +1,32 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@600&family=Kanit&display=swap');
+.fonts{
+    font-family: 'Kanit', sans-serif;
+}
+.fonts-2{
+    font-family: 'Cabin', 'sans-serif';
+}
+
+@media (max-width: 415px) {
+    #nav-bar{
+        justify-content: center;
+    }
+    .login-wd{
+        width: 22rem;
+    }
+    
+}
+.blog-cato{
+    text-transform: uppercase;
+}
+.dropdown-item{
+    cursor: pointer;
+}
+
+.nav-items-wd{
+    width: 9.5rem;
+}
+
+.login-wd{
+    max-width: 40rem;
+}

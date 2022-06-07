@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <style>
+        p {
+            margin-bottom: 0;
+        }
+    </style>
+    <title>Setting</title>
+</head>
+
+<body>
+    <h2 class="text-center text-dark mt-2 fonts-2">The Coding Blog</h2>
+    <div class="header">
+        <ul class="nav nav-tabs" id="nav-bar">
+            <li class="nav-item">
+                <a class="nav-link  ms-1" aria-current="page" id="dashboardTab" href="/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="contactTab" href="/dashboard/contact">Contacts</a>
+            </li>
+            <li class="nav-item">
+				<a class="nav-link " id="contactTab" href="/dashboard/gallery">Gallery</a>
+			</li>
+            <li class="nav-item">
+                <a class="nav-link active" id="settingTab" href="/dashboard/setting">Settings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="aboutTab" href="#">About</a>
+            </li>
+
+            <ul class="nav me-1" id="nav-dropdown">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false"><img src="https://avatars.githubusercontent.com/u/88338651?v=4" alt=""
+                            class="rounded-circle me-2" width="32" height="32">Sachin</a>
+                    <ul class="dropdown-menu ">
+                        <li><a class="dropdown-item" onclick="createPost()">New Post</a></li>
+                        <li><a class="dropdown-item" href="#setting">Setting</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </ul>
+    </div>
+    <div class="container mt-2 d-flex flex-column align-items-center" style="cursor: pointer;">
+        <ul class="nav justify-content-center mt-2">
+            <li class="nav-item nav-pills nav-fill">
+                <a class="nav-link active" aria-current="page" id="basicSetting" href="/dashboard/setting">Basic</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="accountSetting" href="/dashboard/setting/account">Account</a>
+            </li>
+        </ul>
+        <div class="container mt-2 login-wd"">
+                <form accept=" /dashboard/setting" class="mt-3" method="post" id="basic">
+            <div class="mb-3">
+                <p class="text-center">Number of Post: <span class="ms-5">Total Post: {{totalPost}}</span></p>
+                <input type="text" value="{{setting[1]}}" class="form-control" id="TotalPosts" total="{{totalPost}}"
+                    name="noPosts">
+                <div id="postsCon" style="display: none;" class="form-text">Number of post can't be greater than total
+                    post!</div>
+            </div>
+            <div class="mb-3">
+                <h2 class="text-center fonts">Social Links:</h2>
+                <p class="text-center">Facebook:</p>
+                <input type="text" value="{{setting[2]}}" class="form-control" name="fb_url">
+                <p class="text-center">Github:</p>
+                <input type="text" value="{{setting[3]}}" class="form-control" name="git_url">
+                <p class="text-center">Youtube:</p>
+                <input type="text" value="{{setting[4]}}" class="form-control" name="yt_url">
+            </div>
+            <div class="mb-3">
+                <h2 class="text-center fonts">Security:</h2>
+                <p class="text-center">Security Email:</p>
+                <input type="text" value="{{setting[5]}}" class="form-control" id="securityEmail" total="10"
+                    name="securityEmail">
+            </div>
+            <div class="d-flex justify-content-center mt-2">
+                <button type="submit" class="btn btn-primary" id="submitSetting">Save Change</button>
+            </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+    </div>
+
+    <div class="modal fade " id="createPost" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add New Post</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="showimg" accept="image/*" class="modal-img img-fluid">
+                    <form action="/dashboard/addpost" method="post" enctype="multipart/form-data">
+                        <div class="mb-2">
+                            <label for="choosePicCreate" class="form-label">Choose Pic</label>
+                            <input class="form-control form-control" name="choosePicCreate" id="choosePicCreate"
+                                onchange="loadImg(event)" type="file">
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="postTitle" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="postTitle" name="postTitle" placeholder="Title">
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="postTagline" class="form-label">Tag line</label>
+                            <input type="text" class="form-control" id="postTagline" name="postTagline"
+                                placeholder="Tag line">
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="postCato" class="form-label">Categories</label>
+                            <input type="text" class="form-control" id="postCato" name="postCato"
+                                placeholder="Categories">
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="postContent" class="form-label">Content</label>
+                            <textarea class="form-control" id="postContent" name="postContent" placeholder="Content"
+                                rows="5"></textarea>
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a58f8dca66.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    <script>
+        let totalPost = document.getElementById("TotalPosts");
+
+        totalPost.addEventListener("input", function () {
+
+            if (parseInt(totalPost.value) > parseInt(totalPost.getAttribute("total"))) {
+                document.getElementById("submitSetting").classList.add("disabled");
+                document.getElementById('postsCon').style.display = "block"
+            } else {
+                document.getElementById("submitSetting").classList.remove("disabled");
+                document.getElementById('postsCon').style.display = "none"
+            }
+        });
+
+    </script>
+</body>
+
+</html>

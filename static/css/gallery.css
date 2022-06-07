@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@600&family=Fredoka+One&family=Josefin+Sans:wght@700&family=Tajawal&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    user-select: none;
+}
+
+.mobile-enabled {
+    display: none;
+}
+
+.my-mx {
+    margin-right: 3rem !important;
+    margin-left: 3rem !important;
+}
+
+
+@media (max-width: 990px) {
+    .mobile-disabled {
+        display: none;
+    }
+
+    .mobile-enabled {
+        display: block;
+    }
+
+    .my-mx {
+        margin-right: 1rem !important;
+        margin-left: 1rem !important;
+    }
+
+    .banner-pic {
+        width: 10em;
+        height: 40em;
+    }
+
+    .gallery-banner p {
+        width: 120%;
+    }
+}
+
+.my-font {
+    font-family: 'Cabin', 'sans-serif';
+}
+
+.font {
+    font-family: 'Fredoka One', cursive;
+}
+
+.gallery-desc {
+    margin-top: -14px;
+    font-size: 1.1rem;
+    line-height: normal;
+}
