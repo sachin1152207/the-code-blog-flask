@@ -59,7 +59,7 @@
 			Email: {{contact[2]}}<br>
 			Number: {{contact[3]}} <br>
 			Date: {{contact[5]}} <br>
-			Message: {{contact[4]}}
+			Message: {{b64decode(contact[4])}}
 		</div>	
 		{% endfor %}
 		<!-- Contact list End -->

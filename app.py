@@ -278,7 +278,7 @@ def dashboard():
 def contactShow():
     if verifySession():
         Contactlist = dbContact.showAll()
-        return render_template('contactShow.html', contacts = Contactlist)
+        return render_template('contactShow.html', contacts = Contactlist, b64Decode = b64Decode)
     else:
         clearSession()
         return redirect(url_for('index'))
